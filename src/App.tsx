@@ -1,64 +1,73 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import {useState, useEffect} from 'react';
+import {Providers} from './Providers';
+import {Container} from './components/Basic/Container';
+import {Wrapper} from './components/Basic/Wrapper';
+import {H1, H3} from './components/Basic/Heading';
+import {Header} from "./components/Basic/Header";
+import {Section} from "./components/Basic/Section";
+import {Search} from "./components/Search";
+import {Bookmarks} from "./components/Bookmarks/Bookmarks";
+import {SettingsButton} from "./components/Settings/SettingsButton";
+import {SettingsModal} from "./components/Settings/SettingsModal";
+import {useStorage} from "@startpage/local-storage";
+import {SettingsTemplate} from "./helper/init";
 
-import logo from './logo.svg';
-import { Providers } from './Providers';
 
-const Wrapper = styled.div`
-  text-align: center;
-`
-
-const Header = styled.header`
-  ${({ theme: { space, color } }) => css`
-    background-color: ${color.bg.base};
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: ${space.large};
-    color: ${color.fg.base};
-  `}
-`
-  
-const Logo = styled.img`
-  max-width: 20rem;
-  pointer-events: none;
-  animation: App-logo-spin infinite 20s linear;
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
+const greeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+        return `Good morning`;
     }
-    to {
-      transform: rotate(360deg);
+    if (hour < 18) {
+        return `Good afternoon`;
     }
-  }
-`
+    return `Good evening`;
+}
 
-const Link = styled.a`
-  color: ${({theme: {color}}) => color.primary.fg};
-`
+function Clock() {
+    const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+    useEffect(() => {
+        const timer = setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    return <H3>{time}</H3>;
+}
 
 function App() {
-  return (
-    <Providers>
-      <Wrapper>
-        <Header>
-          <Logo src={logo} alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <Link
-            href="https://prettycoffee.github.io/startpage"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            Read the docs
-          </Link>
-        </Header>
-      </Wrapper>
-    </Providers>
-  );
+    const [editSettings, setEditSettings] = useState(false);
+    const [settings] = useStorage("settings", SettingsTemplate);
+    const toggleEditSettings = () => {
+        setEditSettings(!editSettings);
+    }
+
+    return (
+        <Providers>
+            <Wrapper>
+                <Container>
+                    <SettingsButton onClick={toggleEditSettings}/>
+                    <Header>
+                        <H1>{greeting()}, {settings.name}!</H1>
+                        <Clock/>
+                    </Header>
+                    <Section>
+                        <Header>
+                            <H1>Search</H1>
+                            <Search />
+                        </Header>
+                    </Section>
+                    <Section>
+                        <Header>
+                            <H1>Bookmarks</H1>
+                        </Header>
+                        <Bookmarks />
+                    </Section>
+                </Container>
+            </Wrapper>
+            {editSettings && <SettingsModal onClick={toggleEditSettings}/>}
+        </Providers>
+    );
 }
 
 export default App;

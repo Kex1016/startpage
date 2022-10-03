@@ -23,7 +23,7 @@ const globalStyles = css`
 `
 
 export const Providers = ({ children }: PropsWithChildren<unknown>) => 
-    <ThemeProvider initialTheme={getTheme("nord")}>
+    <ThemeProvider initialTheme={getTheme("material")}>
       <ThemeConsumer>
         {({ theme }) =>
           <EmotionTheme theme={theme}>
