@@ -1,5 +1,5 @@
 # Another startpage for your browser.
-Add one to the list.
+Add one to the list. It was made for my own use, since I thought it'd be a fun way of learning React. I made it using [Create React App](https://create-react-app.dev/) and [@startpage](https://prettycoffee.github.io/startpage/#/start).
 
 ## Features
 
