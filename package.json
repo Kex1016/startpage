@@ -1,7 +1,7 @@
 {
   "name": "startpage",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -49,7 +49,12 @@
     "@types/node": "^16.11.62",
     "@types/react": "^17.0.50",
     "@types/react-dom": "^18.0.6",
-    "gh-pages": "^3.2.3",
+    "gh-pages": "^4.0.0",
     "typescript": "^4.8.4"
+  },
+  "homepage": "https://kex1016.github.io/startpage/",
+  "repository": {
+    "url": "https://github.com/Kex1016/startpage/",
+    "type": "git"
   }
 }

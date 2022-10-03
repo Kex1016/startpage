@@ -172,7 +172,7 @@ const ModalSettingCollection = () => {
             <h3>Search Engine</h3>
             <ModalInputSelect value={settings.searchEngine} onChange={(event) => setSettings({...settings, searchEngine: event.target.value as typeof settings.searchEngine})}>
                 {SettingsInputs.searchEngine.map((engine) => (
-                    <option key={engine} value={engine}>{engine}</option>
+                    <option key={engine} value={engine.toLowerCase()}>{engine}</option>
                 ))}
             </ModalInputSelect>
         </ModalSettingEntries>
