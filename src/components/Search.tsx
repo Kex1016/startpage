@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import {css} from "@emotion/react";
-import {performSearch} from "@startpage/search";
+import {performSearch} from "../@types/search";
 import {ChangeEvent, useState} from "react";
 import {useStorage} from "@startpage/local-storage";
 import {SettingsTemplate} from "../helper/init";

@@ -1,3 +1,5 @@
+import {SearchEngineName} from "../@types/search";
+
 const Background = 'https://i.imgur.com/ildkNHJ.png';
 const Name = 'Name';
 const SearchEngine = 'google';
@@ -20,7 +22,7 @@ export type BookmarkType = {
  * @param {array} bookmarks
  * @param {string} background
  * @param {string} name
- * @param {"deepl" | "duckduckgo" | "ecosia" | "google" | "startpage" | "youtube"} searchEngine
+ * @param {SearchEngineName} searchEngine
  * @returns {SettingsType}
  * @example
  * const settings = createSettings([{name: "Google", url: 'https://google.com'}], 'https://i.imgur.com/ildkNHJ.png', 'Name', 'ecosia')
@@ -29,7 +31,7 @@ export type SettingsType = {
     bookmarks: BookmarkType[],
     background: string,
     name: string,
-    searchEngine: "deepl" | "duckduckgo" | "ecosia" | "google" | "startpage" | "youtube"
+    searchEngine: SearchEngineName
 }
 
 export const SettingsTemplate: SettingsType = {
@@ -48,6 +50,7 @@ export const SettingsInputs = {
         "Ecosia",
         "Google",
         "Startpage",
-        "YouTube"
+        "YouTube",
+        "Neeva"
     ]
 }
